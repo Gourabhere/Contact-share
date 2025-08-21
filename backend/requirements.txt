@@ -28,3 +28,4 @@ starlette>=0.37.0
 qrcode[pil]>=8.2
 google-api-python-client>=2.179.0
 google-auth-oauthlib>=1.2.2
+itsdangerous>=2.2.0
