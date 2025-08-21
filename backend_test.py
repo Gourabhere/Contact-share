@@ -127,7 +127,7 @@ class OAuthAPITester:
         success, response = self.run_test(
             "Logout (Unauthenticated)",
             "POST",
-            "/auth/logout",
+            "/api/auth/logout",
             200  # Should still return success
         )
         return success
