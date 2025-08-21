@@ -75,7 +75,7 @@ class OAuthAPITester:
         success, response = self.run_test(
             "API Root",
             "GET",
-            "/",
+            "/api/",
             200
         )
         return success
