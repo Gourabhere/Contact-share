@@ -139,7 +139,7 @@ class OAuthAPITester:
         success1, response1 = self.run_test(
             "Create Status Check",
             "POST",
-            "/status",
+            "/api/status",
             200,
             data=test_data
         )
@@ -148,7 +148,7 @@ class OAuthAPITester:
         success2, response2 = self.run_test(
             "Get Status Checks",
             "GET",
-            "/status",
+            "/api/status",
             200
         )
         
