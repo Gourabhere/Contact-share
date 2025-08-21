@@ -208,7 +208,7 @@ async def get_all_users():
     return [User(**user) for user in users]
 
 # QR Code endpoint
-@app.get("/qr")
+@api_router.get("/qr")
 async def generate_qr():
     frontend_url = os.environ.get('REACT_APP_BACKEND_URL', 'http://localhost:3000').replace(':8001', ':3000')
     
