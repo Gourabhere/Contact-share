@@ -116,7 +116,7 @@ class OAuthAPITester:
         success, response = self.run_test(
             "Update Phone (Unauthenticated)",
             "POST",
-            "/user/phone",
+            "/api/user/phone",
             401,  # Should be unauthorized
             data={"phone": "+1234567890", "consent_given": True}
         )
