@@ -196,33 +196,18 @@ async def update_user_phone(request: Request, phone_data: UserPhoneUpdate):
     user_session['consent_given'] = phone_data.consent_given
     request.session['user'] = user_session
     
-    # Submit to Google Form
-    try:
-        import httpx
-        
-        # Google Form data - you may need to inspect the form to get the correct entry IDs
-        form_data = {
-            'entry.2005620554': user_session['name'],  # Name field - update with correct entry ID
-            'entry.1045781044': phone_data.phone,      # Phone field - update with correct entry ID  
-            'entry.1166974658': user_session['email'], # Email field - update with correct entry ID
-        }
-        
-        # Submit to Google Form
-        async with httpx.AsyncClient() as client:
-            form_response = await client.post(
-                'https://docs.google.com/forms/d/e/1FAIpQLSenBq5aQh9Y2v9oX4A/formResponse',
-                data=form_data,
-                headers={'Content-Type': 'application/x-www-form-urlencoded'},
-                timeout=10.0
-            )
-            
-        logging.info(f"Google Form submission status: {form_response.status_code}")
-        
-    except Exception as e:
-        logging.error(f"Google Form submission failed: {e}")
-        # Continue even if form submission fails
+    # Create prefilled Google Form URL
+    # The form ID from the URL: https://forms.gle/enBq5aQh9Y2v9oX4A 
+    # Maps to: https://docs.google.com/forms/d/e/1FAIpQLScNyRFVKneesakiu6JQoq0423Oaogv6sgs8I_v0VgcRlOvDBw/viewform
     
-    return {"message": "Phone number updated successfully", "user": user_session}
+    # For phone number field, we'll use a generic entry ID that gets updated when we inspect the form
+    google_form_url = f"https://docs.google.com/forms/d/e/1FAIpQLScNyRFVKneesakiu6JQoq0423Oaogv6sgs8I_v0VgcRlOvDBw/viewform?usp=pp_url&entry.2005620554={phone_data.phone}"
+    
+    return {
+        "message": "Phone number updated successfully", 
+        "user": user_session,
+        "google_form_url": google_form_url
+    }
 
 @api_router.post("/auth/logout")
 async def logout(request: Request):
