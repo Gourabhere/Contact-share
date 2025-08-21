@@ -98,7 +98,8 @@ async def get_status_checks():
 @api_router.get("/auth/google")
 async def google_login(request: Request):
     # Store the frontend URL for redirect after OAuth
-    redirect_uri = f"{os.environ.get('REACT_APP_BACKEND_URL', 'http://localhost:8001')}/api/auth/google/callback"
+    backend_url = os.environ.get('REACT_APP_BACKEND_URL', 'http://localhost:8001')
+    redirect_uri = f"{backend_url}/api/auth/google/callback"
     return await oauth.google.authorize_redirect(request, redirect_uri)
 
 @api_router.get("/auth/google/callback")
