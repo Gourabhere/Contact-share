@@ -106,7 +106,7 @@ class OAuthAPITester:
         success, response = self.run_test(
             "Get Current User (Unauthenticated)",
             "GET",
-            "/user/me",
+            "/api/user/me",
             401  # Should be unauthorized
         )
         return success
