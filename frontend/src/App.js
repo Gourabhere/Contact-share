@@ -70,11 +70,12 @@ const LoginPage = () => {
             
             <div className="flex flex-col items-center space-y-3">
               <div className="p-4 bg-white rounded-xl shadow-inner border">
-                <QRCode 
-                  value={window.location.origin} 
-                  size={160}
-                  level="M"
-                  includeMargin={true}
+                <img 
+                  src={`${API}/qr`}
+                  alt="QR Code"
+                  width="160"
+                  height="160"
+                  className="block"
                 />
               </div>
               <div className="flex items-center gap-2 text-sm text-gray-500">
