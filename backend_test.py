@@ -159,7 +159,7 @@ class OAuthAPITester:
         success, response = self.run_test(
             "Get All Users",
             "GET",
-            "/users",
+            "/api/users",
             200
         )
         return success
